@@ -1,9 +1,12 @@
 ﻿jQuery(function () {
     CodeMirror.fromTextArea(document.getElementById("codeMirrorTextArea"), {
+        mode: "htmlmixed",
         lineNumbers: true,
         lineWrapping: true,
-        mode: "htmlmixed",
         matchBrackets: true,
+        autoCloseBrackets: true,
+        matchTags: true,
+        autoCloseTags: true,
         extraKeys: {
             "F11": function (cm) {
                 cm.setOption("fullScreen", !cm.getOption("fullScreen"));
