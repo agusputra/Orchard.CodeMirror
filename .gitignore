@@ -1,0 +1,48 @@
+#bin/* matches all files in the bin/ directory but does not match any files in its subdirectories.
+#bin/** matches all files in the bin/ directory and in its sub-directories.
+#bin/ matches a directory named 'bin' but not a file named 'bin'.
+#===
+#http://stackoverflow.com/questions/3001888/how-do-gitignore-exclusion-rules-actually-work
+#/a/b/c/*
+#!foo
+#The * is important as otherwise you're ignoring the directory itself (so git won't look inside),
+#instead of the files within the directory (which allows for the exclusion).
+#===
+
+#DIRECTORIES
+[Bb]in/
+[Oo]bj/
+_Resharper.*/
+*.Testing/
+TestResults/
+_Backup/
+Backup/
+.idea/
+#[Tt]emp/
+#Migrations/
+_UpgradeWizard_Files/
+#App_Data/
+[Bb]uild/
+Testing/
+
+#FILES
+Deploy.bat
+Deploying.Readme.txt
+Prepare.bat
+*/[Cc]ontent/[Ii]mages/[Dd]ata/*
+*/[Cc]ontent/[Ii]mages/[Cc]ache/*
+*/[Cc]ontent/[Ii]mages/[Tt]emplate/[Ff]ile/*.*
+*/[Cc]ontent/[Ii]mages/[Tt]emplate/*.*
+
+#EXTENSIONS
+*.exe
+*.dll
+*.pdb
+*.manifest
+*.user
+*.suo
+
+#EXCEPTION
+!sqlce*.dll
+!*/[Cc]ontent/[Ii]mages/*/[Nn]o-image*
+!*/[Cc]ontent/[Ii]mages/[Tt]emplate/[Ff]ile/.gitignore

@@ -1,0 +1,53 @@
+﻿@using Orchard.Environment.Descriptor.Models
+
+@{
+    var shellDescriptor = WorkContext.Resolve<ShellDescriptor>();
+}
+
+<link href="~/Modules/CodeMirror/bower_components/codemirror/lib/codemirror.css" rel="stylesheet">
+<link href="~/Modules/CodeMirror/bower_components/codemirror/addon/display/fullscreen.css" rel="stylesheet">
+<link href="~/Modules/CodeMirror/bower_components/codemirror/addon/hint/show-hint.css" rel="stylesheet">
+
+<style>
+    .CodeMirror-lines {
+        font-size: 1.2em;
+    }
+
+    .CodeMirror-hints {
+        font-size: 1.2em;
+    }
+
+    .CodeMirror {
+        border: 1px solid #eee;
+    }
+</style>
+
+<script type="text/javascript">
+    var mediaPickerEnabled = @(shellDescriptor.Features.Any(x => x.Name == "Orchard.MediaPicker") ? "true" : "false");
+    var mediaLibraryEnabled = @(shellDescriptor.Features.Any(x => x.Name == "Orchard.MediaLibrary") ? "true" : "false");
+</script>
+
+@Html.TextArea("Text", (string)Model.Text,
+    new Dictionary<string, object> {
+       {"id", "codeMirrorTextArea"},
+       {"data-mediapicker-uploadpath",Model.AddMediaPath},
+       {"data-mediapicker-title",T("Insert/Update Media")},
+    })
+
+@{
+    Script.Require("CodeMirror");
+    Script.Require("CodeMirror_ModeXml");
+    Script.Require("CodeMirror_ModeJs");
+    Script.Require("CodeMirror_ModeCss");
+    Script.Require("CodeMirror_ModeHtmlmixed");
+    Script.Require("CodeMirror_AddonMatchbrackets");
+    Script.Require("CodeMirror_AddonFullscreen");
+    Script.Require("CodeMirror_AddonShowhint");
+    Script.Require("CodeMirror_AddonXmlhint");
+    Script.Require("CodeMirror_AddonHtmlhint");
+    Script.Require("CodeMirror_AddonCsshint");
+    Script.Require("CodeMirror_AddonJshint");
+    Script.Require("OrchardCodeMirror");
+}
+
+
